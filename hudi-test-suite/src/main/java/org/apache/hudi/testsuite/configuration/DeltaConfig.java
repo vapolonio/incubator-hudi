@@ -70,7 +70,6 @@ public class DeltaConfig implements Serializable {
     public static final String TYPE = "type";
     public static final String NODE_NAME = "name";
     public static final String DEPENDENCIES = "deps";
-    public static final String CHILDREN = "children";
     public static final String HIVE_QUERIES = "hive_queries";
     public static final String HIVE_PROPERTIES = "hive_props";
     private static String NUM_RECORDS_INSERT = "num_records_insert";
@@ -96,43 +95,43 @@ public class DeltaConfig implements Serializable {
     }
 
     public long getNumRecordsInsert() {
-      return Long.valueOf(configsMap.getOrDefault(NUM_RECORDS_INSERT, 0).toString());
+      return Long.parseLong(configsMap.getOrDefault(NUM_RECORDS_INSERT, 0).toString());
     }
 
     public long getNumRecordsUpsert() {
-      return Long.valueOf(configsMap.getOrDefault(NUM_RECORDS_UPSERT, 0).toString());
+      return Long.parseLong(configsMap.getOrDefault(NUM_RECORDS_UPSERT, 0).toString());
     }
 
     public int getRecordSize() {
-      return Integer.valueOf(configsMap.getOrDefault(RECORD_SIZE, 1024).toString());
+      return Integer.parseInt(configsMap.getOrDefault(RECORD_SIZE, 1024).toString());
     }
 
     public int getNumInsertPartitions() {
-      return Integer.valueOf(configsMap.getOrDefault(NUM_PARTITIONS_INSERT, 1).toString());
+      return Integer.parseInt(configsMap.getOrDefault(NUM_PARTITIONS_INSERT, 1).toString());
     }
 
     public int getRepeatCount() {
-      return Integer.valueOf(configsMap.getOrDefault(REPEAT_COUNT, 1).toString());
+      return Integer.parseInt(configsMap.getOrDefault(REPEAT_COUNT, 1).toString());
     }
 
     public int getNumUpsertPartitions() {
-      return Integer.valueOf(configsMap.getOrDefault(NUM_PARTITIONS_UPSERT, 0).toString());
+      return Integer.parseInt(configsMap.getOrDefault(NUM_PARTITIONS_UPSERT, 0).toString());
     }
 
     public int getNumUpsertFiles() {
-      return Integer.valueOf(configsMap.getOrDefault(NUM_FILES_UPSERT, 1).toString());
+      return Integer.parseInt(configsMap.getOrDefault(NUM_FILES_UPSERT, 1).toString());
     }
 
     public double getFractionUpsertPerFile() {
-      return Double.valueOf(configsMap.getOrDefault(FRACTION_UPSERT_PER_FILE, 0.0).toString());
+      return Double.parseDouble(configsMap.getOrDefault(FRACTION_UPSERT_PER_FILE, 0.0).toString());
     }
 
     public boolean isDisableGenerate() {
-      return Boolean.valueOf(configsMap.getOrDefault(DISABLE_GENERATE, false).toString());
+      return Boolean.parseBoolean(configsMap.getOrDefault(DISABLE_GENERATE, false).toString());
     }
 
     public boolean isDisableIngest() {
-      return Boolean.valueOf(configsMap.getOrDefault(DISABLE_INGEST, false).toString());
+      return Boolean.parseBoolean(configsMap.getOrDefault(DISABLE_INGEST, false).toString());
     }
 
     public Map<String, Object> getOtherConfigs() {
@@ -151,7 +150,7 @@ public class DeltaConfig implements Serializable {
     }
 
     public boolean isHiveLocal() {
-      return Boolean.valueOf(configsMap.getOrDefault(HIVE_LOCAL, false).toString());
+      return Boolean.parseBoolean(configsMap.getOrDefault(HIVE_LOCAL, false).toString());
     }
 
     public List<String> getHiveProperties() {
