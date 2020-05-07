@@ -51,7 +51,7 @@ public class SparkSQLQueryNode extends DagNode<Boolean> {
       if (res.count() == 0) {
         assert 0 == queryAndResult.getRight();
       } else {
-        assert ((Row[]) res.collect())[0].getInt(0) == queryAndResult.getRight();
+        assert (res.collect())[0].getInt(0) == queryAndResult.getRight();
       }
       log.info("Successfully validated query!");
     }

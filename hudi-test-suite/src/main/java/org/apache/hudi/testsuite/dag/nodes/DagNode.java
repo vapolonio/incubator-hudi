@@ -37,8 +37,8 @@ public abstract class DagNode<O> implements Comparable<DagNode<O>> {
 
   protected static Logger log = LogManager.getLogger(DagNode.class);
 
-  protected List<DagNode<O>> childNodes;
-  protected List<DagNode<O>> parentNodes;
+  private List<DagNode<O>> childNodes;
+  private List<DagNode<O>> parentNodes;
   protected O result;
   protected Config config;
   private boolean isCompleted;
@@ -111,7 +111,7 @@ public abstract class DagNode<O> implements Comparable<DagNode<O>> {
       return false;
     }
     DagNode<?> dagNode = (DagNode<?>) o;
-    return getName() == dagNode.getName();
+    return getName().equals(dagNode.getName());
   }
 
   @Override

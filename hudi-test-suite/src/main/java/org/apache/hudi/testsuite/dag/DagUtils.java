@@ -97,10 +97,10 @@ public class DagUtils {
     }
   }
 
-  private static DagNode convertJsonToDagNode(Map<String, DagNode> allNodes, JsonNode node) throws IOException {
+  private static DagNode convertJsonToDagNode(Map<String, DagNode> allNodes, JsonNode node) {
     String type = node.get(Config.TYPE).asText();
     final DagNode retNode = convertJsonToDagNode(node, type);
-    Arrays.asList(node.get(Config.DEPENDENCIES).textValue().split(",")).stream().forEach(dep -> {
+    Arrays.stream(node.get(Config.DEPENDENCIES).textValue().split(",")).forEach(dep -> {
       DagNode parentNode = allNodes.get(dep);
       if (parentNode != null) {
         parentNode.addChildNode(retNode);
@@ -111,7 +111,7 @@ public class DagUtils {
 
   private static List<DagNode> findRootNodes(Map<String, DagNode> allNodes) {
     final List<DagNode> rootNodes = new ArrayList<>();
-    allNodes.entrySet().stream().forEach(entry -> {
+    allNodes.entrySet().forEach(entry -> {
       if (entry.getValue().getParentNodes().size() < 1) {
         rootNodes.add(entry.getValue());
       }
